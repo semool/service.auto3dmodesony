@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+	<category label="General" id="general">
+		<setting id="enabled" type="bool" default="true" label="Enable Autoswitch" />
+		<setting id="tvip" type="ipaddress" default="192.168.1.30" label="Lan IP of Sony TV" />
+		<setting id="waitStart" type="labelenum" default="1000" label="Wait ms after start Playback before switch" values="500|1000|1500|2000|2500|3000" />
+		<setting id="waitStop" type="labelenum" default="1000" label="Wait ms after stop Playback before switch" values="500|1000|1500|2000|2500|3000" />
+	</category>
+</settings>

@@ -1,0 +1,10 @@
+
+v0.0.2 (2015-05-09):
+- Add Icon.png
+- Make complete Addon
+
+v0.0.1 (2015-05-08):
+- Inital Release
+- Helix 14.2 Ready
+- Switch TV automaticaly to 3D
+- Tested on Sony W685A
