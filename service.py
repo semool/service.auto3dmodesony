@@ -48,6 +48,7 @@ class Switcher3D(xbmc.Player) :
         if StartSwitch:
             if xbmc.Player().isPlayingVideo():
                 currentPlayingFile = xbmc.Player().getPlayingFile()
+                mode3d = ""
                 if re.search('3D', currentPlayingFile, re.I):
                     for TAG3D in TABTags:
                         if re.search(TAG3D, currentPlayingFile, re.I):
@@ -57,11 +58,10 @@ class Switcher3D(xbmc.Player) :
                         if re.search(SBS3D, currentPlayingFile, re.I):
                             mode3d = "SBS"
                             break
-                if not(xbmcvfs.exists(addonProfile)):
-                    xbmcvfs.mkdir(addonProfile)
-                file(os.path.join(addonProfile, ".3dmode"), "w").write(str(mode3d))
-                xbmc.log("[%s] %s" % ("SonyTV 3D AutoSwitch", "2D --> " + mode3d))
-                xbmc.sleep(int(WaitStart))
+                if mode3d != "":
+                    file(os.path.join(addonProfile, ".3dmode"), "w").write(str(mode3d))
+                    xbmc.log("[%s] %s" % ("SonyTV 3D AutoSwitch", "2D --> " + mode3d))
+                    xbmc.sleep(int(WaitStart))
                 if mode3d == "TAB":
                     PressKey(Button3D)
                     xbmc.sleep(int(KeyWaitFirst))
@@ -70,7 +70,7 @@ class Switcher3D(xbmc.Player) :
                     PressKey(Button3D)
                     xbmc.sleep(int(KeyWait))
                     PressKey(ButtonET)
-                else:
+                if mode3d == "SBS":
                     PressKey(Button3D)
                     xbmc.sleep(int(KeyWaitFirst))
                     PressKey(Button3D)
@@ -80,8 +80,10 @@ class Switcher3D(xbmc.Player) :
     def onPlayBackStopped(self):
         if StartSwitch:
             mode3d = file(os.path.join(addonProfile, ".3dmode"), "r").read()
-            xbmc.log("[%s] %s" % ("SonyTV 3D AutoSwitch", mode3d + " --> 2D"))
-            xbmc.sleep(int(WaitStop))
+            if mode3d != "":
+                file(os.path.join(addonProfile, ".3dmode"), "w").write("")
+                xbmc.log("[%s] %s" % ("SonyTV 3D AutoSwitch", mode3d + " --> 2D"))
+                xbmc.sleep(int(WaitStop))
             if "TAB" in mode3d:
                 PressKey(Button3D)
                 xbmc.sleep(int(KeyWaitFirst))
@@ -92,7 +94,7 @@ class Switcher3D(xbmc.Player) :
                 PressKey(Button3D)
                 xbmc.sleep(int(KeyWait))
                 PressKey(ButtonET)
-            else:
+            if "SBS" in mode3d:
                 PressKey(Button3D)
                 xbmc.sleep(int(KeyWaitFirst))
                 PressKey(Button3D)
@@ -107,6 +109,9 @@ class Switcher3D(xbmc.Player) :
 
 if __name__ == "__main__":
     xbmc.log("Starting %s v%s" % (addonName , addonVersion))
+    if not(xbmcvfs.exists(addonProfile)):
+        xbmcvfs.mkdir(addonProfile)
+    file(os.path.join(addonProfile, ".3dmode"), "w").write("")
     player = Switcher3D()
     while True:
         if xbmc.abortRequested:
