@@ -10,7 +10,7 @@
 		<platform>all</platform>
 		<summary lang="en">Automatically switch Sony TV to TAB or SBS 3D Mode when playing 3D Videos and Back to 2D at Video Stop.</summary>
 		<forum>http://notyet</forum>
-		<source>https://github.com/semool/notyet</source>
+		<source>https://github.com/semool/service.auto3dmodesony</source>
 		<license>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</license>
 	</extension>
 </addon>
