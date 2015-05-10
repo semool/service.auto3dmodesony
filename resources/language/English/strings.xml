@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<strings>
+  <string id="30001">General</string>
+  <string id="30002">Enable Autoswitch</string>
+  <string id="30003">Lan IP of Sony TV</string>
+  <string id="30004">Wait ms after start Playback before switch</string>
+  <string id="30005">Wait ms after stop Playback before switch</string>
+</strings>

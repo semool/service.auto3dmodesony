@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="service.auto3dmodesony" name="Sony 3D AutoSwitch" version="0.0.2" provider-name="semool">
+<addon id="service.auto3dmodesony" name="Sony 3D AutoSwitch" version="0.0.3" provider-name="semool">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="xbmc.gui" version="5.3.0" />
@@ -8,8 +8,11 @@
 	<extension point="xbmc.service" library="service.py" start="startup" />
 	<extension point="xbmc.addon.metadata">
 		<platform>all</platform>
-		<summary lang="en">Automatically switch Sony TV to TAB or SBS 3D Mode when playing 3D Videos and Back to 2D at Video Stop.</summary>
-		<forum>http://notyet</forum>
+		<summary lang="en">Switch Sony TV to TAB or SBS 3D Mode when playing 3D Videos</summary>
+		<summary lang="de">Sony TV automatisch auf SBS oder TAB umschalten bei 3D Videos</summary>
+		<description lang="en">Turns a Sony passive 3D TV automatically in 3D mode ( SBS or TAB ) when playing a 3D movie and back to 2D when playback stopped</description>
+		<description lang="de">Schaltet einen Sony Passiv 3D Fernseher automatisch in den 3D Modus (SBS oder TAB) beim abspielen eines 3D Films und zurück nach 2D beim beenden des Films</description>
+		<forum>http://forum.kodi.tv/showthread.php?tid=226526</forum>
 		<source>https://github.com/semool/service.auto3dmodesony</source>
 		<license>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</license>
 	</extension>
