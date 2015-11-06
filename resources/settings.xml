@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <settings>
-	<category label="30001" id="general">
+	<category label="30001">
 		<setting id="enabled" type="bool" default="true" label="30002" />
+		<setting id="tvmodel" type="enum" default="KDL-50W685" label="30006" values="KDL-50W685|KDL-50W805" />
 		<setting id="tvip" type="ipaddress" default="192.168.1.30" label="30003" />
+	</category>
+	<category label="30009">
+		<setting id="cookie" type="text" label="30007" />
 		<setting id="waitStart" type="labelenum" default="1000" label="30004" values="500|1000|1500|2000|2500|3000" />
 		<setting id="waitStop" type="labelenum" default="1000" label="30005" values="500|1000|1500|2000|2500|3000" />
+		<setting id="waitpress" type="labelenum" default="50" label="30008" values="50|60|70|80|90|100" />
 	</category>
 </settings>

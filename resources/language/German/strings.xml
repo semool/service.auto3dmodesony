@@ -5,4 +5,8 @@
   <string id="30003">Netzwerk IP des Sony TV</string>
   <string id="30004">Warte ms bis zum Umschalten nach dem Start des Videos</string>
   <string id="30005">Warte ms bis zum Umschalten nach dem Stoppen des Videos</string>
+  <string id="30006">TV Modell</string>
+  <string id="30007">Cookie Authentifizierungsschlüssel</string>
+  <string id="30008">Warte ms zwischen den Tasten Betätigungen</string>
+  <string id="30009">Erweitert</string>
 </strings>

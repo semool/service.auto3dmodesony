@@ -1,3 +1,9 @@
+v0.0.4 (2015-11-06):
+- Add W805 Model
+- Add Option to set Cookie Auth Key
+- Add Option for wait time between Keys
+- Fix a Bug that switch to 2D dont work on auto Stop at the end of a Movie
+
 v0.0.3 (2015-05-10):
 - Add german language
 
