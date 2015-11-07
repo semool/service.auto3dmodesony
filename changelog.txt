@@ -1,3 +1,6 @@
+v0.0.5 (2015-11-07):
+- Get StereoScopic Mode from Kodi GUI and not from the filename
+
 v0.0.4 (2015-11-06):
 - Add W805 Model
 - Add Option to set Cookie Auth Key

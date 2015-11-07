@@ -1,4 +1,4 @@
-import xbmc, xbmcaddon, xbmcvfs, re, httplib, os
+import xbmc, xbmcaddon, xbmcvfs, re, httplib, os, json
 
 addon = xbmcaddon.Addon("service.auto3dmodesony")
 addonName = addon.getAddonInfo("name")
@@ -20,9 +20,6 @@ Button3D = "AAAAAgAAAHcAAABNAw=="
 
 KeyWaitFirst = "200"
 
-SBSTags = ['.sbs.', '.hsbs.', '-hsbs-', '_sbs_', 'sbs', '-sbs', 'hsbs_']
-TABTags = ['.tab.', '.htab.', '-htab-', '_tab_', 'tab', '-tab', 'htab_', 'hou', 'ou']
-
 headers = {}
 headers['User-Agent'] = 'TVSideView/2.0.1 CFNetwork/672.0.8 Darwin/14.0.0'
 headers['Content-Type'] = 'text/xml; charset=UTF-8'
@@ -41,6 +38,15 @@ def PressKey(key):
     conn = httplib.HTTPConnection( str(TvIP), port=80)
     conn.request("POST", "/sony/IRCC", command, headers=headers)
     httpResponse = conn.getresponse()
+
+def get3dMode():
+    data = json.dumps({'jsonrpc': '2.0', 'method': 'GUI.GetProperties', 'params': {'properties': ['stereoscopicmode']}, 'id': 1})
+    result = json.loads(xbmc.executeJSONRPC(data))
+    if not "error" in result:
+        if result['result'].has_key('stereoscopicmode'):
+            if result['result']['stereoscopicmode'].has_key('mode'):
+                result = result['result']['stereoscopicmode']['mode'].encode('utf-8')
+    return result
 
 def stop3d():
     if StartSwitch:
@@ -85,21 +91,15 @@ class Switcher3D(xbmc.Player) :
     def onPlayBackStarted(self):
         if StartSwitch:
             if xbmc.Player().isPlayingVideo():
-                currentPlayingFile = xbmc.Player().getPlayingFile()
-                mode3d = ""
-                if re.search('3D', currentPlayingFile, re.I):
-                    for TAG3D in TABTags:
-                        if re.search(TAG3D, currentPlayingFile, re.I):
-                            mode3d = "TAB"
-                            break
-                    for SBS3D in SBSTags:
-                        if re.search(SBS3D, currentPlayingFile, re.I):
-                            mode3d = "SBS"
-                            break
-                if mode3d != "":
+                xbmc.sleep(int(WaitStart))
+                mode3d = get3dMode()
+                if mode3d == 'split_horizontal':
+                    mode3d = "TAB"
+                elif mode3d == 'split_vertical':
+                    mode3d = "SBS"
+                if mode3d == "TAB" or mode3d == "SBS":
                     file(os.path.join(addonProfile, ".3dmode"), "w").write(str(mode3d))
                     xbmc.log("[%s] %s" % ("SonyTV 3D AutoSwitch", "2D --> " + mode3d))
-                    xbmc.sleep(int(WaitStart))
                 if mode3d == "TAB":
                     PressKey(Button3D)
                     xbmc.sleep(int(KeyWaitFirst))
