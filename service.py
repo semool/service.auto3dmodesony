@@ -64,7 +64,7 @@ def stop3d():
             xbmc.sleep(int(KeyWait))
             PressKey(Button3D)
             xbmc.sleep(int(KeyWait))
-            if TvModel == "KDL-50W805":
+            if TvModel == "1":
                 PressKey(Button3D)
                 xbmc.sleep(int(KeyWait))
             PressKey(ButtonET)
@@ -79,7 +79,7 @@ def stop3d():
             xbmc.sleep(int(KeyWait))
             PressKey(Button3D)
             xbmc.sleep(int(KeyWait))
-            if TvModel == "KDL-50W805":
+            if TvModel == "1":
                 PressKey(Button3D)
                 xbmc.sleep(int(KeyWait))
             PressKey(ButtonET)

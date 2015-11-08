@@ -1,3 +1,7 @@
+v0.0.6 (2015-11-08):
+- Show the Cookie Option only when W805 is selected
+- Fixed typo
+
 v0.0.5 (2015-11-07):
 - Get StereoScopic Mode from Kodi GUI and not from the filename
 
