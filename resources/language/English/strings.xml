@@ -9,4 +9,8 @@
   <string id="30007">Cookie Authentication Key</string>
   <string id="30008">Wait ms between the Key actuations</string>
   <string id="30009">Advanced</string>
+  <string id="30010">TAB Mode ON. How often press 3D ?</string>
+  <string id="30011">SBS Mode ON. How often press 3D ?</string>
+  <string id="30012">TAB Mode OFF. How often press 3D ?</string>
+  <string id="30013">SBS Mode OFF. How often press 3D ?</string>
 </strings>

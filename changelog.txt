@@ -1,3 +1,7 @@
+v1.0.0 (2015-11-10):
+- Add new Model "Unknown"
+  You can set manually how often the 3D Button must press for TAB/SBS Mode
+
 v0.0.6 (2015-11-08):
 - Show the Cookie Option only when W805 is selected
 - Fixed typo

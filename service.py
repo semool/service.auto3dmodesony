@@ -11,14 +11,28 @@ TvIP = addon.getSetting("tvip")
 TvModel = addon.getSetting("tvmodel")
 cookiekey = addon.getSetting("cookie")
 StartSwitch = addon.getSetting("enabled")
-WaitStart = addon.getSetting("waitStart")
-WaitStop = addon.getSetting("waitStop")
-KeyWait = addon.getSetting("waitpress")
+WaitStart = (int(addon.getSetting("waitStart")))
+WaitStop = (int(addon.getSetting("waitStop")))
+KeyWait = (int(addon.getSetting("waitpress")))
 
 ButtonET = "AAAAAQAAAAEAAABlAw/Aw=="
 Button3D = "AAAAAgAAAHcAAABNAw=="
 
-KeyWaitFirst = "200"
+KeyWaitFirst = (int("200"))
+
+Button3DTABon = 3
+Button3DSBSon = 2
+if TvModel == "0":
+    Button3DTABoff = 4
+    Button3DSBSoff = 5
+if TvModel == "1":
+    Button3DTABoff = 5
+    Button3DSBSoff = 6
+if TvModel == "2":
+    Button3DTABon = (int(addon.getSetting("Button3DTABon")))
+    Button3DSBSon = (int(addon.getSetting("Button3DSBSon")))
+    Button3DTABoff = (int(addon.getSetting("Button3DTABoff")))
+    Button3DSBSoff = (int(addon.getSetting("Button3DSBSoff")))
 
 headers = {}
 headers['User-Agent'] = 'TVSideView/2.0.1 CFNetwork/672.0.8 Darwin/14.0.0'
@@ -46,74 +60,57 @@ def get3dMode():
         if result['result'].has_key('stereoscopicmode'):
             if result['result']['stereoscopicmode'].has_key('mode'):
                 result = result['result']['stereoscopicmode']['mode'].encode('utf-8')
+                if result == 'split_horizontal':
+                    result = "TAB"
+                elif result == 'split_vertical':
+                    result = "SBS"
     return result
+
+def runKey(mode, mode3d):
+    if mode == "on":
+        x = Button3DTABon
+        y = Button3DSBSon
+    if mode == "off":
+        x = Button3DTABoff
+        y = Button3DSBSoff
+    if mode3d == "TAB":
+        z = x
+    if mode3d == "SBS":
+        z = y
+    i = 1
+    while i <= z:
+        PressKey(Button3D)
+        if i == 1:
+            xbmc.sleep(KeyWaitFirst)
+        else:
+            xbmc.sleep(KeyWait)
+        i = i + 1
+    PressKey(ButtonET)
+
+def start3d():
+    if StartSwitch:
+        xbmc.sleep(WaitStart)
+        mode3d = get3dMode()
+        if mode3d == "TAB" or mode3d == "SBS":
+            file(os.path.join(addonProfile, ".3dmode"), "w").write(str(mode3d))
+            xbmc.log("[%s] %s" % ("SonyTV 3D AutoSwitch", "2D --> " + mode3d))
+            runKey("on", mode3d)
 
 def stop3d():
     if StartSwitch:
+        xbmc.sleep(WaitStop)
         mode3d = file(os.path.join(addonProfile, ".3dmode"), "r").read()
-        if mode3d != "":
+        if mode3d == "TAB" or mode3d == "SBS":
             file(os.path.join(addonProfile, ".3dmode"), "w").write("")
             xbmc.log("[%s] %s" % ("SonyTV 3D AutoSwitch", mode3d + " --> 2D"))
-            xbmc.sleep(int(WaitStop))
-        if "TAB" in mode3d:
-            PressKey(Button3D)
-            xbmc.sleep(int(KeyWaitFirst))
-            PressKey(Button3D)
-            xbmc.sleep(int(KeyWait))
-            PressKey(Button3D)
-            xbmc.sleep(int(KeyWait))
-            PressKey(Button3D)
-            xbmc.sleep(int(KeyWait))
-            if TvModel == "1":
-                PressKey(Button3D)
-                xbmc.sleep(int(KeyWait))
-            PressKey(ButtonET)
-        if "SBS" in mode3d:
-            PressKey(Button3D)
-            xbmc.sleep(int(KeyWaitFirst))
-            PressKey(Button3D)
-            xbmc.sleep(int(KeyWait))
-            PressKey(Button3D)
-            xbmc.sleep(int(KeyWait))
-            PressKey(Button3D)
-            xbmc.sleep(int(KeyWait))
-            PressKey(Button3D)
-            xbmc.sleep(int(KeyWait))
-            if TvModel == "1":
-                PressKey(Button3D)
-                xbmc.sleep(int(KeyWait))
-            PressKey(ButtonET)
+            runKey("off", mode3d)
 
 class Switcher3D(xbmc.Player) :
     def _init_ (self):
         xbmc.Player._init_(self)
 
     def onPlayBackStarted(self):
-        if StartSwitch:
-            if xbmc.Player().isPlayingVideo():
-                xbmc.sleep(int(WaitStart))
-                mode3d = get3dMode()
-                if mode3d == 'split_horizontal':
-                    mode3d = "TAB"
-                elif mode3d == 'split_vertical':
-                    mode3d = "SBS"
-                if mode3d == "TAB" or mode3d == "SBS":
-                    file(os.path.join(addonProfile, ".3dmode"), "w").write(str(mode3d))
-                    xbmc.log("[%s] %s" % ("SonyTV 3D AutoSwitch", "2D --> " + mode3d))
-                if mode3d == "TAB":
-                    PressKey(Button3D)
-                    xbmc.sleep(int(KeyWaitFirst))
-                    PressKey(Button3D)
-                    xbmc.sleep(int(KeyWait))
-                    PressKey(Button3D)
-                    xbmc.sleep(int(KeyWait))
-                    PressKey(ButtonET)
-                if mode3d == "SBS":
-                    PressKey(Button3D)
-                    xbmc.sleep(int(KeyWaitFirst))
-                    PressKey(Button3D)
-                    xbmc.sleep(int(KeyWait))
-                    PressKey(ButtonET)
+        start3d()
 
     def onPlayBackStopped(self):
         stop3d()
