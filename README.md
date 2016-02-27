@@ -7,10 +7,11 @@ Switch your TV automaticly to 3D SBS/TAB Mode when playing an 3D Video and back 
 #####Tested Models:
 - Sony KDL-50W685
 - Sony KDL-50W805
-- Sony KDL-?????? - Select TV Model "Unknown" in Settings and set press 3D Options for SBS and Tab Mode manually
+- Sony KD-65X8507
+- Sony KD?-?????? - Select TV Model "Unknown" in Settings and set press UP/Down Options for SBS and Tab Mode manually
 
 #####Compatibility:
 The TV must have its own IP Adress in Local Network.
-The KDL-50W805 and other Models requires a authentication cookie.
+The KDL-50W805/KD-65X8507 and other Models requires a authentication cookie.
 Follow this guide to get your auth code and put it in the Plugin Advanced Settings:
 https://blog.yrden.de/2014/11/14/remote-control-bravia-tvs-with-authentication.html

@@ -17,22 +17,20 @@ KeyWait = (int(addon.getSetting("waitpress")))
 
 ButtonET = "AAAAAQAAAAEAAABlAw/Aw=="
 Button3D = "AAAAAgAAAHcAAABNAw=="
+ButtonUP = "AAAAAQAAAAEAAAB0Aw=="
+ButtonDN = "AAAAAQAAAAEAAAB1Aw=="
 
 KeyWaitFirst = (int("200"))
 
-Button3DTABon = 3
-Button3DSBSon = 2
-if TvModel == "0":
-    Button3DTABoff = 4
-    Button3DSBSoff = 5
+if TvModel == "0" or TvModel == "2":
+    ButtonUPDNTAB = 2
+    ButtonUPDNSBS = 1
 if TvModel == "1":
-    Button3DTABoff = 5
-    Button3DSBSoff = 6
-if TvModel == "2":
-    Button3DTABon = (int(addon.getSetting("Button3DTABon")))
-    Button3DSBSon = (int(addon.getSetting("Button3DSBSon")))
-    Button3DTABoff = (int(addon.getSetting("Button3DTABoff")))
-    Button3DSBSoff = (int(addon.getSetting("Button3DSBSoff")))
+    ButtonUPDNTAB = 3
+    ButtonUPDNSBS = 2
+if TvModel == "3":
+    ButtonUPDNTAB = (int(addon.getSetting("ButtonUPDNTAB")))
+    ButtonUPDNSBS = (int(addon.getSetting("ButtonUPDNSBS")))
 
 headers = {}
 headers['User-Agent'] = 'TVSideView/2.0.1 CFNetwork/672.0.8 Darwin/14.0.0'
@@ -67,23 +65,19 @@ def get3dMode():
     return result
 
 def runKey(mode, mode3d):
-    if mode == "on":
-        x = Button3DTABon
-        y = Button3DSBSon
-    if mode == "off":
-        x = Button3DTABoff
-        y = Button3DSBSoff
     if mode3d == "TAB":
-        z = x
+        z = ButtonUPDNTAB
     if mode3d == "SBS":
-        z = y
+        z = ButtonUPDNSBS
     i = 1
+    PressKey(Button3D)
+    xbmc.sleep(KeyWaitFirst)
     while i <= z:
-        PressKey(Button3D)
-        if i == 1:
-            xbmc.sleep(KeyWaitFirst)
-        else:
-            xbmc.sleep(KeyWait)
+        if mode == "on":
+            PressKey(ButtonDN)
+        if mode == "off":
+            PressKey(ButtonUP)
+        xbmc.sleep(KeyWait)
         i = i + 1
     PressKey(ButtonET)
 

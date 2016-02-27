@@ -1,3 +1,8 @@
+v1.1.0 (2016-02-27):
+- Jarvis Ready
+- Add new Model "KD-65X8507"
+- Change the Code from only 3D Button to 3D and UP/Down Button for all Models
+
 v1.0.0 (2015-11-10):
 - Add new Model "Unknown"
   You can set manually how often the 3D Button must press for TAB/SBS Mode
