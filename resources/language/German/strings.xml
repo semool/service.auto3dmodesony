@@ -12,4 +12,8 @@
   <string id="30010">TAB Modus EIN/AUS. Wie oft Hoch/Runter drücken?</string>
   <string id="30011">SBS Modus EIN/AUS. Wie oft Hoch/Runter drücken?</string>
   <string id="30012">Authentifizierung mit TV starten</string>
+  <string id="30013">Code eingeben der auf dem TV angezeigt wird</string>
+  <string id="30014">Abbruch</string>
+  <string id="30015">Zuerst die IP Adresse des TV's eingeben</string>
+  <string id="30016">Falscher Code</string>
 </strings>

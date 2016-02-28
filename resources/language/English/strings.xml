@@ -12,4 +12,8 @@
   <string id="30010">TAB Mode ON/OFF. How often press UP/Down ?</string>
   <string id="30011">SBS Mode ON/OFF. How often press UP/Down ?</string>
   <string id="30012">Start Authentication with TV</string>
+  <string id="30013">Enter Code displayed on TV</string>
+  <string id="30014">Abort</string>
+  <string id="30015">Please set TV IP Address first</string>
+  <string id="30016">Wrong Code</string>
 </strings>

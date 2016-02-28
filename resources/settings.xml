@@ -3,8 +3,8 @@
 	<category label="30001">
 		<setting id="enabled" type="bool" default="true" label="30002" />
 		<setting id="tvmodel" type="enum" default="KDL-50W685" label="30006" values="KDL-50W685|KDL-50W805|KD-65X8507|Unknown" />
-		<setting id="tvip" type="ipaddress" default="192.168.1.30" label="30003" />
-		<setting id="auth" label="30012" type="action" action="RunScript($CWD/auth.py)"/>
+		<setting id="tvip" type="ipaddress" default="0.0.0.0" label="30003" />
+		<setting id="auth" label="30012" type="action" action="RunScript(special://home/addons/service.auto3dmodesony/auth.py)"/>
 		<setting id="cookie" type="text" label="30007" />
 		<setting id="ButtonUPDNTAB" visible="eq(-4,3)" type="labelenum" default="1" label="30010" values="1|2|3|4|5|6" />
 		<setting id="ButtonUPDNSBS" visible="eq(-5,3)" type="labelenum" default="1" label="30011" values="1|2|3|4|5|6" />
