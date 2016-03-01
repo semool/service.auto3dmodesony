@@ -1,3 +1,6 @@
+v2.0.3 (2016-03-01):
+- Add Fanart Background
+
 v2.0.2 (2016-02-29):
 - Add Addon to the Addon Program Category
   - No need for navigate to System Addons for enter Settings Dialog
