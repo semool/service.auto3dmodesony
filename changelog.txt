@@ -1,3 +1,6 @@
+v2.0.4 (2016-03-02):
+- Add script.module.requests to Dependency
+
 v2.0.3 (2016-03-01):
 - Add Fanart Background
 
