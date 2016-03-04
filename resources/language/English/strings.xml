@@ -16,4 +16,6 @@
   <string id="30014">Abort</string>
   <string id="30015">Please set TV IP Address first</string>
   <string id="30016">Wrong Code</string>
+  <string id="30017">!Waiting for max 50 seconds!</string>
+  <string id="30018">Write down the Code show on TV in a File named: "kodiauth" and copy it in Kodi Temp dir to complete Authentication.</string>
 </strings>

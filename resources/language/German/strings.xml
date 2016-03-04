@@ -16,4 +16,6 @@
   <string id="30014">Abbruch</string>
   <string id="30015">Zuerst die IP Adresse des TV's eingeben</string>
   <string id="30016">Falscher Code</string>
+  <string id="30017">!Warte max. 50 Sekunden!</string>
+  <string id="30018">Schreibe den Code der auf dem TV angezeigt wird in eine Datei mit Namen: "kodiauth" und kopiere diese in das Kodi Temp Verzeichnis um die Authentifizierung abzuschließen.</string>
 </strings>

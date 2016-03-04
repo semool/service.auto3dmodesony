@@ -1,3 +1,6 @@
+v2.1.0 (2016-03-04):
+- Add alternative Pincode submit when TV IP set to 127.0.0.1
+
 v2.0.4 (2016-03-02):
 - Add script.module.requests to Dependency
 
