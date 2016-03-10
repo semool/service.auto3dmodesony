@@ -5,16 +5,21 @@
 Switch your Sony 3D TV automaticly to 3D SBS/TAB Mode when playing an 3D Video and back to 2D after Playback stopped
 
 #####Tested Models:
-- Sony KDL-50W685
-- Sony KDL-50W805
-- Sony KD-65X8507
-- Sony KD?-?????? - Select TV Model "Unknown" in Settings and set press UP/Down Options for SBS and Tab Mode manually
+- Sony KDL-50W685A
+- Sony KDL-50W805B
+- Sony KDL-50W805C
+- Sony KD-65X8507C
+- Sony ??????????? - Select TV Model "Unknown" in Settings and set press UP/Down Options for SBS and Tab Mode manually
 
-#####Compatibility:
-The TV must have its own IP Adress in Local Network.
-The KDL-50W805/KD-65X8507 and other Models requires a authentication cookie:
+#####Authentication:
 - Go to the Addon Settings, type in the TV's IP Adress and save the Settings
 - Open the Settings again and select "Start Authentication with TV"
 - Type in the 4 digit Code the TV will display and press OK
 - When all was OK the "Cookie Authentication Key" was filled out automatically
-- Done
+
+#####When Kodi is installed directly on the TV (Android) and the remote is blocked when the TV show the Code, the Authentication Process is different:
+- In The settings set TV IP to 127.0.0.1 and save
+- Open the Settings again and select "Start Authentication with TV"
+- Write down the 4 digit Key in a file named "kodiauth"
+- Copy the file over FTP or whatever in Kodi Temp Dir (Android Path: /sdcard/Android/data/org.xbmc.kodi/files/.kodi/temp/)
+- Now the Authentication will automatically finished
