@@ -1,3 +1,6 @@
+v2.2.1 (2016-03-10):
+- Change the Button Key Codes to newer one
+
 v2.2.0 (2016-03-10):
 - Add new Model "KDL-50W805C"
 

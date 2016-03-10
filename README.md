@@ -18,8 +18,8 @@ Switch your Sony 3D TV automaticly to 3D SBS/TAB Mode when playing an 3D Video a
 - When all was OK the "Cookie Authentication Key" was filled out automatically
 
 #####When Kodi is installed directly on the TV (Android) and the remote is blocked when the TV show the Code, the Authentication Process is different:
-- In The settings set TV IP to 127.0.0.1 and save
+- In the settings set TV IP to 127.0.0.1 and save
 - Open the Settings again and select "Start Authentication with TV"
 - Write down the 4 digit Key in a file named "kodiauth"
-- Copy the file over FTP or whatever in Kodi Temp Dir (Android Path: /sdcard/Android/data/org.xbmc.kodi/files/.kodi/temp/)
+- Copy the file over FTP or whatever in Kodi temp dir (Android Path: /sdcard/Android/data/org.xbmc.kodi/files/.kodi/temp/)
 - Now the Authentication will automatically finished

@@ -17,15 +17,10 @@ KeyWait = (int(addon.getSetting("waitpress")))
 KeyWaitFirst = (int(addon.getSetting("waitfirst")))
 
 Button3D = "AAAAAgAAAHcAAABNAw=="
-ButtonET = "AAAAAQAAAAEAAABlAw/Aw=="
-ButtonUP = "AAAAAQAAAAEAAAB0Aw=="
-ButtonDN = "AAAAAQAAAAEAAAB1Aw=="
-
-if TvModel == "KDL-50W805C":
-    ButtonET = "AAAAAgAAAJcAAABKAw=="
-    ButtonUP = "AAAAAgAAAJcAAABPAw=="
-    ButtonDN = "AAAAAgAAAJcAAABQAw=="
-    ButtonPL = "AAAAAgAAAJcAAAAaAw=="
+ButtonET = "AAAAAgAAAJcAAABKAw=="
+ButtonUP = "AAAAAgAAAJcAAABPAw=="
+ButtonDN = "AAAAAgAAAJcAAABQAw=="
+ButtonPL = "AAAAAgAAAJcAAAAaAw=="
 
 if TvModel == "KDL-50W685A" or TvModel == "KD-65X8507C" or TvModel == "KDL-50W805C":
     ButtonUPDNTAB = 2
@@ -87,10 +82,9 @@ def runKey(mode, mode3d):
     PressKey(ButtonET)
 
     # Bugfix for some Android TV's
-    if mode =="on" and TvModel == "KDL-50W805C":
-        if xbmc.Player().isPlayingVideo() == False:
-            xbmc.sleep(int("1500"))
-            PressKey(ButtonPL)
+    if mode =="on" and xbmc.Player().isPlayingVideo() == False:
+        xbmc.sleep(int("1500"))
+        PressKey(ButtonPL)
 
 def start3d():
     if StartSwitch:
