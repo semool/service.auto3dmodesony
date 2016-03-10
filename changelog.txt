@@ -1,3 +1,6 @@
+v2.2.0 (2016-03-10):
+- Add new Model "KDL-50W805C"
+
 v2.1.0 (2016-03-04):
 - Add alternative Pincode submit when TV IP set to 127.0.0.1
 

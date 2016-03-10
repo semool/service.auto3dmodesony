@@ -14,21 +14,26 @@ StartSwitch = addon.getSetting("enabled")
 WaitStart = (int(addon.getSetting("waitStart")))
 WaitStop = (int(addon.getSetting("waitStop")))
 KeyWait = (int(addon.getSetting("waitpress")))
+KeyWaitFirst = (int(addon.getSetting("waitfirst")))
 
-ButtonET = "AAAAAQAAAAEAAABlAw/Aw=="
 Button3D = "AAAAAgAAAHcAAABNAw=="
+ButtonET = "AAAAAQAAAAEAAABlAw/Aw=="
 ButtonUP = "AAAAAQAAAAEAAAB0Aw=="
 ButtonDN = "AAAAAQAAAAEAAAB1Aw=="
 
-KeyWaitFirst = (int("200"))
+if TvModel == "KDL-50W805C":
+    ButtonET = "AAAAAgAAAJcAAABKAw=="
+    ButtonUP = "AAAAAgAAAJcAAABPAw=="
+    ButtonDN = "AAAAAgAAAJcAAABQAw=="
+    ButtonPL = "AAAAAgAAAJcAAAAaAw=="
 
-if TvModel == "0" or TvModel == "2":
+if TvModel == "KDL-50W685A" or TvModel == "KD-65X8507C" or TvModel == "KDL-50W805C":
     ButtonUPDNTAB = 2
     ButtonUPDNSBS = 1
-if TvModel == "1":
+if TvModel == "KDL-50W805B":
     ButtonUPDNTAB = 3
     ButtonUPDNSBS = 2
-if TvModel == "3":
+if TvModel == "Unknown":
     ButtonUPDNTAB = (int(addon.getSetting("ButtonUPDNTAB")))
     ButtonUPDNSBS = (int(addon.getSetting("ButtonUPDNSBS")))
 
@@ -81,23 +86,36 @@ def runKey(mode, mode3d):
         i = i + 1
     PressKey(ButtonET)
 
+    # Bugfix for some Android TV's
+    if mode =="on" and TvModel == "KDL-50W805C":
+        if xbmc.Player().isPlayingVideo() == False:
+            xbmc.sleep(int("1500"))
+            PressKey(ButtonPL)
+
 def start3d():
     if StartSwitch:
-        xbmc.sleep(WaitStart)
-        mode3d = get3dMode()
+        mode3d = file(os.path.join(addonProfile, ".3dmode"), "r").read().rstrip()
         if mode3d == "TAB" or mode3d == "SBS":
-            file(os.path.join(addonProfile, ".3dmode"), "w").write(str(mode3d))
-            xbmc.log("[%s] %s" % ("SonyTV 3D AutoSwitch", "2D --> " + mode3d))
-            runKey("on", mode3d)
+            xbmc.log("[%s] %s" % ("SonyTV 3D AutoSwitch", "3D Mode already set to " + mode3d))
+        else:
+            file(os.path.join(addonProfile, ".3dmodelock"), "w").write("")
+            xbmc.sleep(WaitStart)
+            mode3d = get3dMode()
+            if mode3d == "TAB" or mode3d == "SBS":
+                file(os.path.join(addonProfile, ".3dmode"), "w").write(str(mode3d))
+                xbmc.log("[%s] %s" % ("SonyTV 3D AutoSwitch", "2D --> " + mode3d))
+                runKey("on", mode3d)
+            xbmcvfs.delete(addonProfile + "/.3dmodelock")
 
 def stop3d():
     if StartSwitch:
-        xbmc.sleep(WaitStop)
-        mode3d = file(os.path.join(addonProfile, ".3dmode"), "r").read()
-        if mode3d == "TAB" or mode3d == "SBS":
-            file(os.path.join(addonProfile, ".3dmode"), "w").write("")
-            xbmc.log("[%s] %s" % ("SonyTV 3D AutoSwitch", mode3d + " --> 2D"))
-            runKey("off", mode3d)
+        if not (xbmcvfs.exists(addonProfile + "/.3dmodelock")):
+            xbmc.sleep(WaitStop)
+            mode3d = file(os.path.join(addonProfile, ".3dmode"), "r").read().rstrip()
+            if mode3d == "TAB" or mode3d == "SBS":
+                file(os.path.join(addonProfile, ".3dmode"), "w").write("")
+                xbmc.log("[%s] %s" % ("SonyTV 3D AutoSwitch", mode3d + " --> 2D"))
+                runKey("off", mode3d)
 
 class Switcher3D(xbmc.Player) :
     def _init_ (self):
