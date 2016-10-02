@@ -108,8 +108,12 @@ def stop3d():
             mode3d = file(os.path.join(addonProfile, ".3dmode"), "r").read().rstrip()
             if mode3d == "TAB" or mode3d == "SBS":
                 file(os.path.join(addonProfile, ".3dmode"), "w").write("")
-                xbmc.log("[%s] %s" % ("SonyTV 3D AutoSwitch", mode3d + " --> 2D"))
-                runKey("off", mode3d)
+                mode3d = get3dMode()
+                if mode3d == "TAB" or mode3d == "SBS":
+                    xbmc.log("[%s] %s" % ("SonyTV 3D AutoSwitch", mode3d + " --> 2D"))
+                    runKey("off", mode3d)
+                else:
+                    xbmc.log("[%s] %s" % ("SonyTV 3D AutoSwitch", "2D Mode already set"))
 
 class Switcher3D(xbmc.Player) :
     def _init_ (self):

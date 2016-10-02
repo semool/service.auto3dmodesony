@@ -1,3 +1,6 @@
+v2.2.2 (2016-10-02):
+- Dont switch 3D -> 2D when Gui automaticly switch to 2D
+
 v2.2.1 (2016-03-10):
 - Change the Button Key Codes to newer one
 
