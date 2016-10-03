@@ -1,6 +1,7 @@
 import xbmc, xbmcaddon, xbmcgui, xbmcvfs, json, requests, base64, time
 
 addon = xbmcaddon.Addon("service.auto3dmodesony")
+addonName = addon.getAddonInfo("name")
 TvIP = addon.getSetting("tvip")
 
 reqUrl = 'http://%s/sony/accessControl' % TvIP
@@ -35,7 +36,7 @@ elif TvIP == "127.0.0.1":
             pinfile = xbmcvfs.File("special://temp/kodiauth")
             pincode = pinfile.read().rstrip()
             xbmcvfs.delete("special://temp/kodiauth")
-            xbmc.log("[%s] %s" % ("SonyTV 3D AutoSwitch", "Pincode in File: " + pincode))
+            xbmc.log("[%s] %s" % (addonName, "Pincode in File: " + pincode))
             Ok = True
             break
     dialog.close()
@@ -45,7 +46,7 @@ elif TvIP == "127.0.0.1":
         try:
             reqKey = str(r.headers['Set-Cookie'].split("=")[1].split(";")[0])
             addon.setSetting("cookie", reqKey)
-            xbmc.log("[%s] %s" % ("SonyTV 3D AutoSwitch", "Cookie-auth-Key: " + reqKey))
+            xbmc.log("[%s] %s" % (addonName, "Cookie-auth-Key: " + reqKey))
         except:
             xbmcgui.Dialog().ok(addon.getLocalizedString(30014), addon.getLocalizedString(30016))
     else:
@@ -58,6 +59,6 @@ else:
     try:
         reqKey = str(r.headers['Set-Cookie'].split("=")[1].split(";")[0])
         addon.setSetting("cookie", reqKey)
-        xbmc.log("[%s] %s" % ("SonyTV 3D AutoSwitch", "Cookie-auth-Key: " + reqKey))
+        xbmc.log("[%s] %s" % (addonName, "Cookie-auth-Key: " + reqKey))
     except:
         xbmcgui.Dialog().ok(addon.getLocalizedString(30014), addon.getLocalizedString(30016))
