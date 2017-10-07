@@ -8,8 +8,7 @@
 		<setting id="cookie" type="text" label="30007" />
 		<setting id="ButtonUPDNTAB" visible="eq(-4,Unknown)" type="labelenum" default="1" label="30010" values="1|2|3|4|5|6" />
 		<setting id="ButtonUPDNSBS" visible="eq(-5,Unknown)" type="labelenum" default="1" label="30011" values="1|2|3|4|5|6" />
-		<setting id="waitStart" visible="true" type="labelenum" default="500" label="30004" values="500|1000|1500|2000|2500|3000" />
-		<setting id="waitStop" visible="true" type="labelenum" default="500" label="30005" values="500|1000|1500|2000|2500|3000" />
+		<setting id="waitStart" visible="true" type="labelenum" default="3000" label="30004" values="500|1000|1500|2000|2500|3000|4000|5000|6000|7000|8000" />
 		<setting id="waitfirst" type="labelenum" default="200" label="30019" values="200|300|400|500|600" />
 		<setting id="waitpress" type="labelenum" default="50" label="30008" values="50|60|70|80|90|100|200" />
 	</category>

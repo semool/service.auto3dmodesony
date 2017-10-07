@@ -1,3 +1,8 @@
+v3.0.0 (2017-10-08):
+- Leia Compatible
+- Checks always GUI Mode and Switch the TV (not only at Player Start as before)
+- Switch also when change Mode in Settings
+
 v2.2.3 (2017-04-30):
 - Krypton Compatible
 

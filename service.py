@@ -69,6 +69,8 @@ def runKey(mode, mode3d):
         z = ButtonUPDNTAB
     if mode3d == "SBS":
         z = ButtonUPDNSBS
+    if mode3d == "SWITCH":
+        z = 1
     i = 1
     PressKey(Button3D)
     xbmc.sleep(KeyWaitFirst)
@@ -77,6 +79,10 @@ def runKey(mode, mode3d):
             PressKey(ButtonDN)
         if mode == "off":
             PressKey(ButtonUP)
+        if mode == "switchSBS":
+            PressKey(ButtonUP)
+        if mode == "switchTAB":
+            PressKey(ButtonDN)
         xbmc.sleep(KeyWait)
         i = i + 1
     PressKey(ButtonET)
@@ -87,54 +93,44 @@ def runKey(mode, mode3d):
         PressKey(ButtonPL)
 
 def start3d():
-    if StartSwitch:
-        mode3d = file(os.path.join(addonProfile, ".3dmode"), "r").read().rstrip()
-        if mode3d == "TAB" or mode3d == "SBS":
-            xbmc.log("[%s] %s" % (addonName, "3D Mode already set to " + mode3d))
-        else:
-            file(os.path.join(addonProfile, ".3dmodelock"), "w").write("")
-            xbmc.sleep(WaitStart)
-            mode3d = get3dMode()
+    StartSwitch = addon.getSetting("enabled")
+    if StartSwitch == "true":
+        xbmc.sleep(WaitStart)
+        xbmc.log("[%s] %s" % (addonName, "Checking Gui 3D Mode"))
+        mode3d = get3dMode()
+        mode3dcheck = file(os.path.join(addonProfile, ".3dmode"), "r").read().rstrip()
+        if mode3d != mode3dcheck:
             if mode3d == "TAB" or mode3d == "SBS":
-                file(os.path.join(addonProfile, ".3dmode"), "w").write(str(mode3d))
-                xbmc.log("[%s] %s" % (addonName, "2D --> " + mode3d))
-                runKey("on", mode3d)
-            xbmcvfs.delete(addonProfile + "/.3dmodelock")
-
-def stop3d():
-    if StartSwitch:
-        if not (xbmcvfs.exists(addonProfile + "/.3dmodelock")):
-            xbmc.sleep(WaitStop)
-            mode3d = file(os.path.join(addonProfile, ".3dmode"), "r").read().rstrip()
-            if mode3d == "TAB" or mode3d == "SBS":
-                file(os.path.join(addonProfile, ".3dmode"), "w").write("")
-                mode3d = get3dMode()
-                if mode3d == "TAB" or mode3d == "SBS":
+                xbmc.sleep(WaitStart)
+                if mode3dcheck == "TAB":
+                    mode3d = "SWITCH"
+                    xbmc.log("[%s] %s" % (addonName, "TAB --> SBS"))
+                    runKey("switchSBS", mode3d)
+                    file(os.path.join(addonProfile, ".3dmode"), "w").write(str("SBS"))
+                if mode3dcheck == "SBS":
+                    mode3d = "SWITCH"
+                    xbmc.log("[%s] %s" % (addonName, "SBS --> TAB"))
+                    runKey("switchTAB", mode3d)
+                    file(os.path.join(addonProfile, ".3dmode"), "w").write(str("TAB"))
+                if mode3dcheck == "off":
+                    xbmc.log("[%s] %s" % (addonName, "2D --> " + mode3d))
+                    runKey("on", mode3d)
+                    file(os.path.join(addonProfile, ".3dmode"), "w").write(str(mode3d))
+            else:
+                if mode3dcheck == "TAB" or mode3dcheck == "SBS":
+                    xbmc.sleep(WaitStart)
                     xbmc.log("[%s] %s" % (addonName, mode3d + " --> 2D"))
-                    runKey("off", mode3d)
-                else:
-                    xbmc.log("[%s] %s" % (addonName, "2D Mode already set"))
-
-class Switcher3D(xbmc.Player) :
-    def _init_ (self):
-        xbmc.Player._init_(self)
-
-    def onPlayBackStarted(self):
-        start3d()
-
-    def onPlayBackStopped(self):
-        stop3d()
-
-    def onPlayBackEnded(self):
-        stop3d()
+                    runKey("off", mode3dcheck)
+                file(os.path.join(addonProfile, ".3dmode"), "w").write(str("off"))
 
 if __name__ == "__main__":
     xbmc.log("Starting %s v%s" % (addonName , addonVersion))
     if not(xbmcvfs.exists(addonProfile)):
         xbmcvfs.mkdir(addonProfile)
-    file(os.path.join(addonProfile, ".3dmode"), "w").write("")
-    player = Switcher3D()
+    file(os.path.join(addonProfile, ".3dmode"), "w").write(str("off"))
     monitor = xbmc.Monitor()
+    while True:
+        start3d()
     while True:
         if monitor.waitForAbort(1):
             break

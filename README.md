@@ -2,7 +2,7 @@
 
 ##SonyTV 3D AutoSwitch
 
-Switch your Sony 3D TV automaticly to 3D SBS/TAB Mode when playing an 3D Video and back to 2D after Playback stopped
+Switch your Sony 3D TV automaticly to 3D SBS/TAB Mode and back to 2D when the Kodi GUI Switch the Modes
 
 #####Tested Models:
 - Sony KDL-50W685A
