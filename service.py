@@ -12,7 +12,6 @@ TvModel = addon.getSetting("tvmodel")
 cookiekey = addon.getSetting("cookie")
 StartSwitch = addon.getSetting("enabled")
 WaitStart = (int(addon.getSetting("waitStart")))
-WaitStop = (int(addon.getSetting("waitStop")))
 KeyWait = (int(addon.getSetting("waitpress")))
 KeyWaitFirst = (int(addon.getSetting("waitfirst")))
 
@@ -94,6 +93,7 @@ def runKey(mode, mode3d):
 
 def start3d():
     StartSwitch = addon.getSetting("enabled")
+    WaitStart = (int(addon.getSetting("waitStart")))
     if StartSwitch == "true":
         xbmc.sleep(WaitStart)
         xbmc.log("[%s] %s" % (addonName, "Checking Gui 3D Mode"))
@@ -131,7 +131,6 @@ if __name__ == "__main__":
     monitor = xbmc.Monitor()
     while True:
         start3d()
-    while True:
         if monitor.waitForAbort(1):
             break
         xbmc.sleep(500)
