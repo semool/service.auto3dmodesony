@@ -104,27 +104,27 @@ def start3d():
                 xbmc.sleep(WaitStart)
                 if mode3dcheck == "TAB":
                     mode3d = "SWITCH"
-                    xbmc.log("[%s] %s" % (addonName, "TAB --> SBS"))
+                    xbmc.log("[%s] %s" % (addonName, "TAB --> SBS"),level=xbmc.LOGNOTICE)
                     runKey("switchSBS", mode3d)
                     file(os.path.join(addonProfile, ".3dmode"), "w").write(str("SBS"))
                 if mode3dcheck == "SBS":
                     mode3d = "SWITCH"
-                    xbmc.log("[%s] %s" % (addonName, "SBS --> TAB"))
+                    xbmc.log("[%s] %s" % (addonName, "SBS --> TAB"),level=xbmc.LOGNOTICE)
                     runKey("switchTAB", mode3d)
                     file(os.path.join(addonProfile, ".3dmode"), "w").write(str("TAB"))
                 if mode3dcheck == "off":
-                    xbmc.log("[%s] %s" % (addonName, "2D --> " + mode3d))
+                    xbmc.log("[%s] %s" % (addonName, "2D --> " + mode3d),level=xbmc.LOGNOTICE)
                     runKey("on", mode3d)
                     file(os.path.join(addonProfile, ".3dmode"), "w").write(str(mode3d))
             else:
                 if mode3dcheck == "TAB" or mode3dcheck == "SBS":
                     xbmc.sleep(WaitStart)
-                    xbmc.log("[%s] %s" % (addonName, mode3d + " --> 2D"))
+                    xbmc.log("[%s] %s" % (addonName, mode3d + " --> 2D"),level=xbmc.LOGNOTICE)
                     runKey("off", mode3dcheck)
                 file(os.path.join(addonProfile, ".3dmode"), "w").write(str("off"))
 
 if __name__ == "__main__":
-    xbmc.log("Starting %s v%s" % (addonName , addonVersion))
+    xbmc.log("[%s] Starting v%s" % (addonName , addonVersion),level=xbmc.LOGNOTICE)
     if not(xbmcvfs.exists(addonProfile)):
         xbmcvfs.mkdir(addonProfile)
     file(os.path.join(addonProfile, ".3dmode"), "w").write(str("off"))
@@ -134,4 +134,4 @@ if __name__ == "__main__":
         if monitor.waitForAbort(1):
             break
         xbmc.sleep(500)
-    xbmc.log("Stopping %s v%s" % (addonName , addonVersion))
+    xbmc.log("[%s] Stopping v%s" % (addonName , addonVersion),level=xbmc.LOGNOTICE)
