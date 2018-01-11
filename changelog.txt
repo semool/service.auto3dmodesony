@@ -1,3 +1,6 @@
+v3.0.2 (2018-01-11):
+- Update Log Output
+
 v3.0.0 (2017-10-08):
 - Leia Compatible
 - Checks always GUI Mode and Switch the TV (not only at Player Start as before)
