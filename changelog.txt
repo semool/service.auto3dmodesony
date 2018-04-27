@@ -1,3 +1,6 @@
+v3.0.3 (2018-04-28):
+- Bug Workaround for actual Kodi 18 Nightlies to Switch back 2D after stop 3D Video Playback
+
 v3.0.2 (2018-01-11):
 - Update Log Output
 

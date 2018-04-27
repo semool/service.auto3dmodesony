@@ -123,11 +123,22 @@ def start3d():
                     runKey("off", mode3dcheck)
                 file(os.path.join(addonProfile, ".3dmode"), "w").write(str("off"))
 
+class Switcher3D(xbmc.Player) :
+    def _init_ (self):
+        xbmc.Player._init_(self)
+
+    def onPlayBackStopped(self):
+        xbmc.executeJSONRPC('{"jsonrpc":"2.0", "method":"Settings.SetSettingValue", "params":{"setting":"videoscreen.stereoscopicmode","value":0}, "id":1}')
+
+    def onPlayBackEnded(self):
+        xbmc.executeJSONRPC('{"jsonrpc":"2.0", "method":"Settings.SetSettingValue", "params":{"setting":"videoscreen.stereoscopicmode","value":0}, "id":1}')
+
 if __name__ == "__main__":
     xbmc.log("[%s] Starting v%s" % (addonName , addonVersion),level=xbmc.LOGNOTICE)
     if not(xbmcvfs.exists(addonProfile)):
         xbmcvfs.mkdir(addonProfile)
     file(os.path.join(addonProfile, ".3dmode"), "w").write(str("off"))
+    player = Switcher3D()
     monitor = xbmc.Monitor()
     while True:
         start3d()
