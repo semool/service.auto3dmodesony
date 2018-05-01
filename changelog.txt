@@ -1,3 +1,7 @@
+v3.1.0 (2018-05-01):
+- Code optimize
+- Dont send Keys to TV when the TV switch automaticly to 2D on playback stop/ended
+
 v3.0.3 (2018-04-28):
 - Bug Workaround for actual Kodi 18 Nightlies to Switch back 2D after stop 3D Video Playback
 
