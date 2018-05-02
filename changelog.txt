@@ -1,3 +1,6 @@
+v3.1.1 (2018-05-02):
+- Bugfix
+
 v3.1.0 (2018-05-01):
 - Code optimize
 - Dont send Keys to TV when the TV switch automaticly to 2D on playback stop/ended

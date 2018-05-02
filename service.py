@@ -140,15 +140,19 @@ class Switcher3D(xbmc.Player) :
 
     def onPlayBackStopped(self):
         if getSwitch2DonStop() == "true":
-            xbmc.log("[%s] %s" % (addonName, "Switching GUI to 2D"),level=xbmc.LOGNOTICE)
-            xbmc.executeJSONRPC('{"jsonrpc":"2.0", "method":"Settings.SetSettingValue", "params":{"setting":"videoscreen.stereoscopicmode","value":0}, "id":1}')
-            file(os.path.join(addonProfile, ".3dmode"), "w").write(str("off"))
+            mode3d = get3dMode()
+            if mode3d == "TAB" or mode3d == "SBS":
+                xbmc.log("[%s] %s" % (addonName, "Switching GUI to 2D"),level=xbmc.LOGNOTICE)
+                xbmc.executeJSONRPC('{"jsonrpc":"2.0", "method":"Settings.SetSettingValue", "params":{"setting":"videoscreen.stereoscopicmode","value":0}, "id":1}')
+                file(os.path.join(addonProfile, ".3dmode"), "w").write(str("off"))
 
     def onPlayBackEnded(self):
         if getSwitch2DonStop() == "true":
-            xbmc.log("[%s] %s" % (addonName, "Switching GUI to 2D"),level=xbmc.LOGNOTICE)
-            xbmc.executeJSONRPC('{"jsonrpc":"2.0", "method":"Settings.SetSettingValue", "params":{"setting":"videoscreen.stereoscopicmode","value":0}, "id":1}')
-            file(os.path.join(addonProfile, ".3dmode"), "w").write(str("off"))
+            mode3d = get3dMode()
+            if mode3d == "TAB" or mode3d == "SBS":
+                xbmc.log("[%s] %s" % (addonName, "Switching GUI to 2D"),level=xbmc.LOGNOTICE)
+                xbmc.executeJSONRPC('{"jsonrpc":"2.0", "method":"Settings.SetSettingValue", "params":{"setting":"videoscreen.stereoscopicmode","value":0}, "id":1}')
+                file(os.path.join(addonProfile, ".3dmode"), "w").write(str("off"))
 
 if __name__ == "__main__":
     xbmc.log("[%s] Starting v%s" % (addonName , addonVersion),level=xbmc.LOGNOTICE)
