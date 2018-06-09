@@ -25,17 +25,18 @@ elif TvIP == "127.0.0.1":
     Ok = False
     abort_after = 50
     start = time.time()
+    auth_file_path = xbmc.translatePath("special://temp/kodiauth")
     while True:
         delta = time.time() - start
         x = delta * 2
         dialog.update(int(x))
         if delta >= abort_after:
             break
-        if (xbmcvfs.exists("special://temp/kodiauth")):
+        if (xbmcvfs.exists(auth_file_path)):
             time.sleep(1)
-            pinfile = xbmcvfs.File("special://temp/kodiauth")
+            pinfile = xbmcvfs.File(auth_file_path)
             pincode = pinfile.read().rstrip()
-            xbmcvfs.delete("special://temp/kodiauth")
+            xbmcvfs.delete(auth_file_path)
             xbmc.log("[%s] %s" % (addonName, "Pincode in File: " + pincode),level=xbmc.LOGNOTICE)
             Ok = True
             break
