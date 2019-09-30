@@ -1,3 +1,7 @@
+v3.1.4 (2019-09-30)
+- move addon icon to Video Section
+- make Kodi19 compatible
+
 v3.1.3 (2018-07-31)
 - fix access to kodiauth file (THX @wxtry)
 

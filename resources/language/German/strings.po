@@ -1,0 +1,89 @@
+# Kodi Media Center language file
+# Addon Name: Sony 3D AutoSwitch
+# Addon id: service.auto3dmodesony
+# Addon Provider: semool
+msgid ""
+msgstr ""
+"Project-Id-Version: Kodi Addons\n"
+"Report-Msgid-Bugs-To: alanwww1@kodi.org\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Kodi Translation Team\n"
+"Language-Team: English (http://www.transifex.com/projects/p/xbmc-addons/language/en/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgctxt "#30001"
+msgid "General"
+msgstr "Allgemein"
+
+msgctxt "#30002"
+msgid "Enable Autoswitch"
+msgstr "Aktiviere automatische Umschaltung"
+
+msgctxt "#30003"
+msgid "Lan IP of Sony TV"
+msgstr "Netzwerk IP des Sony TV"
+
+msgctxt "#30004"
+msgid "Wait ms after GUI Switch before switch TV"
+msgstr "Warte ms zum TV umschalten nach der GUI Umschaltung"
+
+msgctxt "#30006"
+msgid "TV Model"
+msgstr "TV Modell"
+
+msgctxt "#30007"
+msgid "Cookie Authentication Key"
+msgstr "Cookie Authentifizierungsschlüssel"
+
+msgctxt "#30008"
+msgid "Wait ms between the Key actuations"
+msgstr "Warte ms zwischen den Tasten Betätigungen"
+
+msgctxt "#30009"
+msgid "Advanced"
+msgstr "Erweitert"
+
+msgctxt "#30010"
+msgid "TAB Mode ON/OFF. How often press UP/Down?"
+msgstr "TAB Modus EIN/AUS. Wie oft Hoch/Runter drücken?"
+
+msgctxt "#30011"
+msgid "SBS Mode ON/OFF. How often press UP/Down?"
+msgstr "SBS Modus EIN/AUS. Wie oft Hoch/Runter drücken?"
+
+msgctxt "#30012"
+msgid "Start Authentication with TV"
+msgstr "Authentifizierung mit TV starten"
+
+msgctxt "#30013"
+msgid "Enter Code displayed on TV"
+msgstr "Code eingeben der auf dem TV angezeigt wird"
+
+msgctxt "#30014"
+msgid "Abort"
+msgstr "Abbruch"
+
+msgctxt "#30015"
+msgid "Please set TV IP Address first"
+msgstr "Zuerst die IP Adresse des TV's eingeben"
+
+msgctxt "#30016"
+msgid "Wrong Code"
+msgstr "Falscher Code"
+
+msgctxt "#30017"
+msgid "!Waiting for max 50 seconds!"
+msgstr "!Warte max. 50 Sekunden!"
+
+msgctxt "#30018"
+msgid "Write down the Code show on TV in a File named: "kodiauth" and copy it in Kodi Temp dir to complete Authentication."
+msgstr "Schreibe den Code der auf dem TV angezeigt wird in eine Datei mit Namen: "kodiauth" und kopiere diese in das Kodi Temp Verzeichnis um die Authentifizierung abzuschließen."
+
+msgctxt "#30019"
+msgid "Wait ms after press the 3D Key"
+msgstr "Warte ms nach dem drücken der 3D Taste"
